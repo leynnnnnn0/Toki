@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
+
+#root {
+  /* colors */
+  --orange: #ECBC76;
+  --white: #FFFFFF;
+  --grey: #808080;
+  --black: #000000;
+  /* font */
+  --font: "Poppins", sans-serif;
+  /* paddings */
+  --paddingM: 2.5rem;
+  /* font size */
+  --large-font: 2.5rem;
+  --small-font: 1rem;
+  --xs-font: 0.8rem;
+  /* margins */
+  --margin2: 2rem;
+  
+}
+
+.HW100 {
+  height: 100vh;
+  width: 100;
+}
+
+.BORDER20 {
+  border-radius: 30px;
+  box-shadow: 2px 2px 20px var(--grey);
+}
+
+.AUTHORIZATION_BOX {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 741px;
+  width: 539px;
+  background: var(--white);
+}
+
+
+.P1 {
+  font-family: var(--font);
+  font-size: var(--small-font);
+  font-weight: 400;
+  color: var(--black);
+}
+
+.H1 {
+  font-family: var(--font);
+  font-size: var(--large-font);
+  font-weight: 500;
+  color: var(--black);
+}
+
+.P2 {
+  font-family: var(--font);
+  font-size: var(--xs-font);
+  font-weight: 400;
+  color: var(--black);
+}

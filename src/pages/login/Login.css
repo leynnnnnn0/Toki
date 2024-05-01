@@ -1,0 +1,25 @@
+.login-page {
+    background: linear-gradient(
+        to right,
+        var(--orange) 0%,
+        var(--orange) 50%,
+        var(--white) 50%,
+        var(--white) 100%
+    );
+    position: relative;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+
+}
+
+.sign-in {
+    margin-bottom: var(--margin2);
+}
+
+.password-field {
+    margin-top: 1rem;
+}
