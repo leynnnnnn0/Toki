@@ -1,5 +1,24 @@
 import mongoose from  'mongoose';
-import Post from './post.js';
+
+const postSchema = mongoose.Schema({
+    author: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    likes: {
+        type: Number,
+        default: 0
+    },
+    dislikes: {
+        type: Number,
+        default: 0
+    }
+}, {timeStamps: true})
+
 const userSchema = mongoose.Schema({
     username: {
         type: String,
@@ -14,6 +33,12 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    posts: [postSchema]
 }, {timeStamps: true});
 
-export const User = mongoose.model('User', userSchema);
+const Post = mongoose.model('Post', postSchema);
+
+const User = mongoose.model('User', userSchema);
+
+export {Post, User};
+

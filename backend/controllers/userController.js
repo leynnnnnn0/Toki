@@ -1,4 +1,4 @@
-import { User } from "../models/userModel.js";
+import { User, Post } from "../models/userModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js"
 import bcyrpt from 'bcrypt';
 import dotenv from 'dotenv';
@@ -33,17 +33,43 @@ const login = asyncHandler(async (req, res) => {
         const checkHashedPassword = await bcyrpt.compare(password, user.password);
         // Check if the provided password matches the user's password
         if (!checkHashedPassword) {
-            return res.status(401).send({message: "incorrect password"});
+            return res.send({message: "incorrect password", access: false});
         }
         generateToken(res, user.username);
         // If password matches, return the user object
-        res.json("Success")
+        res.status(200).send({
+            currentUser: user.username,
+            message: "Success",
+            access: true
+        })
     } catch (error) {
         // Handle any errors that occur during the database query
         console.error(error);
         res.status(500).send("Internal Server Error");
     }
 });
+
+
+const getPosts = asyncHandler(async (req, res) => {
+    const results = await Post.find();
+    res.status(200).send(results);
+}) 
+
+const createPost = asyncHandler(async (req, res) => {
+    const {username, content} = req.body;
+    try {
+        const result = await User.findOne({username})
+        const post = await Post.create({
+            author: username,
+            content
+        });
+        result.posts.push(post);
+        await result.save();
+        res.status(200).send({message: "post addded!"});
+    }catch (err) {
+        res.send(err.message);
+    }    
+})
 
 const createUser = asyncHandler(async (req, res) => {
     // Destructuring the username, email and password from the body
@@ -73,4 +99,4 @@ const createUser = asyncHandler(async (req, res) => {
 });
 
 
-export {createUser, login, test, logout};
+export {createUser, login, test, logout, createPost, getPosts};

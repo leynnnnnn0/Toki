@@ -1,26 +1,32 @@
 import { useState } from "react";
-import Button from "../../assets/button/Button";
+import Button from "../../components/button/Button";
 import LandingFormInput from "../../components/landingFormInput/LandingFormInput";
 import "./Login.css";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { userStore } from "../../store/userStore";
 
 const Login = () => {
+  const getUser = userStore(state => state.getUser);
+  const navigate = useNavigate();
   const [information, setInformation] = useState({
     username: "",
     password: "",
   });
   axios.defaults.withCredentials = true;
-  const fetchData = async () =>
-    await axios
-      .post(
-        "http://localhost:8000/api/users/login",
-        {
-            username: information.username,
-            password: information.password
-        }
-      )
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+  const fetchData = async () => {
+    try {
+      const isAccess = getUser(information.username, information.password);
+      if(isAccess) {
+        navigate('/feed');
+        return;
+      }
+    }catch (err) {
+      console.log(err.message);
+    }
+      
+  }
+    
 
   const handleChange = (e) => {
     setInformation({

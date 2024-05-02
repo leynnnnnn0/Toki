@@ -1,6 +1,6 @@
 import "./Signin.css";
 import LandingFormInput from "../../components/landingFormInput/LandingFormInput";
-import Button from "../../assets/button/Button";
+import Button from "../../components/button/Button";
 import { useState } from "react";
 import axios from 'axios'
 const Signin = () => {
