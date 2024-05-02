@@ -1,0 +1,25 @@
+.post-box {
+    margin: 1.5rem 0;
+    background: var(--orange);
+    height: 150px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.reactions {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.heart {
+    font-size: 2rem;
+}
+
+.num-of-likes {
+    margin-left: 0.5rem;
+}

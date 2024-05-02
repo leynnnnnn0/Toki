@@ -18,6 +18,7 @@ body {
   --white: #FFFFFF;
   --grey: #808080;
   --black: #000000;
+  --very-dark-orange: #EC4800;
   /* font */
   --font: "Poppins", sans-serif;
   /* paddings */
@@ -40,6 +41,11 @@ body {
 .BORDER20 {
   border-radius: 30px;
   box-shadow: 2px 2px 20px var(--grey);
+}
+
+.BORDER10 {
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px var(--grey);
 }
 
 .AUTHORIZATION_BOX {
