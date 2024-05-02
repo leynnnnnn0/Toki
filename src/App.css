@@ -13,6 +13,7 @@ body {
 
 #root {
   /* colors */
+  --dark-orange: #E48700;
   --orange: #ECBC76;
   --white: #FFFFFF;
   --grey: #808080;
@@ -25,6 +26,7 @@ body {
   --large-font: 2.5rem;
   --small-font: 1rem;
   --xs-font: 0.8rem;
+  --xxs-font: 0.7rem;
   /* margins */
   --margin2: 2rem;
   
@@ -45,9 +47,20 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 741px;
+  height: fit-content;
   width: 539px;
   background: var(--white);
+}
+
+.FORM-BOX {
+  background: linear-gradient(
+      to right,
+      var(--orange) 0%,
+      var(--orange) 50%,
+      var(--white) 50%,
+      var(--white) 100%
+  );
+  position: relative;
 }
 
 
@@ -71,3 +84,15 @@ body {
   font-weight: 400;
   color: var(--black);
 }
+
+.SPAN1 {
+  font-family: var(--font);
+  font-size: var(--xs-font);
+  font-weight: 400;
+  color: var(--orange);
+}
+
+.TEXT-END {
+  align-self: flex-end;
+}
+

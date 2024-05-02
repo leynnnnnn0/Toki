@@ -1,9 +1,25 @@
 import { User } from "../models/userModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js"
 import bcyrpt from 'bcrypt';
-import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
 dotenv.config();
+import generateToken from "../utils/createToken.js";
+
+
+const test = asyncHandler(async (req, res) => {
+    console.log(req.headers['cookie']);
+    res.send("Success")
+})
+
+
+const logout = asyncHandler(async (req,res ) => {
+    res.cookie('jwt', '', {
+        httpOnly: true,
+        expires: new Date(0)
+    })
+    res.status(200).send("Logged out");
+})
+
 const login = asyncHandler(async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -19,9 +35,9 @@ const login = asyncHandler(async (req, res) => {
         if (!checkHashedPassword) {
             return res.status(401).send({message: "incorrect password"});
         }
-
+        generateToken(res, user.username);
         // If password matches, return the user object
-        res.json({user: user, checkHashedPassword: checkHashedPassword});
+        res.json("Success")
     } catch (error) {
         // Handle any errors that occur during the database query
         console.error(error);
@@ -45,11 +61,7 @@ const createUser = asyncHandler(async (req, res) => {
             email,
             password: hashedPassword
          });
-         // Sending the response if successful
-         const accessToken = jwt.sign(user.email, process.env.SECRET_CODE);
-         const refershToken = jwt.sign(user.email, process.env.REFRESH_TOKE);
-         res.cookie(accessToken, accessToken, {maxAge: 60000})
-         res.cookie(refershToken, refershToken, {maxAge: 300000, httpOnly: true, secure: true, sameSite: 'strict'})
+         generateToken(res, username);
          
          res.send({
              user: user,
@@ -61,4 +73,4 @@ const createUser = asyncHandler(async (req, res) => {
 });
 
 
-export {createUser, login};
+export {createUser, login, test, logout};

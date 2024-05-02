@@ -1,26 +1,23 @@
-
-
-.login-box {
+.sign-up-box {
     display: flex;
     flex-direction: column;
     padding: 2.5rem;
-
 }
 
-.password-field {
+#sign-up-email {
+    margin-top: 2rem;
+}
+
+#sign-up-username {
     margin-top: 1rem;
 }
 
-#login-username {
-    margin-top: 1.5rem;
-}
-
-.forget-password {
+#sign-up-password {
     margin-top: 1rem;
 }
 
-#sign-in-button {
+#sign-up-button {
+    margin-top: 2rem;
     background: var(--dark-orange);
-    margin-top: 1rem;
     color: var(--white);
 }

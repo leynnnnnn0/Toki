@@ -1,11 +1,16 @@
 import './App.css'
+import Signin from './pages/signin/Signin'
 import Login from './pages/login/Login'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
   return (
-    <>
-      <Login/>
-    </>
+    <BrowserRouter>
+      <Routes>
+      <Route path='/' element={<Signin />} />
+        <Route path='/signup' element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
