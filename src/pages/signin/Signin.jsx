@@ -12,7 +12,7 @@ const Signin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post("http://localhost:8000/api/users", {email: information.username, username: information.email, password: information.password}).catch(err => console.log(err));
+    const res = await axios.post("http://localhost:8000/api/users", {username: information.username, email: information.email, password: information.password}).catch(err => console.log(err));
     window.alert(res);
   }
 

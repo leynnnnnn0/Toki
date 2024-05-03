@@ -11,6 +11,22 @@ const test = asyncHandler(async (req, res) => {
     res.send("Success")
 })
 
+const addLikes = asyncHandler(async (req, res) => {
+    const {_id} = req.body;
+    const result = await Post.findById(_id).catch(err => res.send(err.message));
+    result.likes += 1;
+    result.save();
+    res.status(200).send(result);
+})
+
+const dislike = asyncHandler(async (req, res) => {
+    const {_id} = req.body;
+    const result = await Post.findById(_id).catch(err => res.send(err.message));
+    result.dislike += 1;
+    result.save();
+    res.status(200).send(result);
+})
+
 
 const logout = asyncHandler(async (req,res ) => {
     res.cookie('jwt', '', {
@@ -57,6 +73,9 @@ const getPosts = asyncHandler(async (req, res) => {
 
 const createPost = asyncHandler(async (req, res) => {
     const {username, content} = req.body;
+    if(!username || !content) {
+        return res.status(401).send({message: "incomplete details", access: false})
+    }
     try {
         const result = await User.findOne({username})
         const post = await Post.create({
@@ -99,4 +118,4 @@ const createUser = asyncHandler(async (req, res) => {
 });
 
 
-export {createUser, login, test, logout, createPost, getPosts};
+export {createUser, login, test, logout, createPost, getPosts, addLikes, dislike};

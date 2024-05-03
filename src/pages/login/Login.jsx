@@ -16,7 +16,8 @@ const Login = () => {
   axios.defaults.withCredentials = true;
   const fetchData = async () => {
     try {
-      const isAccess = getUser(information.username, information.password);
+      const isAccess = await getUser(information.username, information.password);
+      console.log("access: " + isAccess)
       if(isAccess) {
         navigate('/feed');
         return;

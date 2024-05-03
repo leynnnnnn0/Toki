@@ -17,7 +17,7 @@ const postSchema = mongoose.Schema({
         type: Number,
         default: 0
     }
-}, {timeStamps: true})
+}, {timestamps: true})
 
 const userSchema = mongoose.Schema({
     username: {
@@ -34,7 +34,7 @@ const userSchema = mongoose.Schema({
         required: true
     },
     posts: [postSchema]
-}, {timeStamps: true});
+}, {timestamps: true});
 
 const Post = mongoose.model('Post', postSchema);
 

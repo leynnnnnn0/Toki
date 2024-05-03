@@ -5,6 +5,7 @@ export const userStore = create(set => ({
     access: false,
     getUser: async (username, password) => {
         try {
+            set({access: false});
             const result = await axios.post('http://localhost:8000/api/users/login', {username, password})
             if(!result.data.access) {
                 window.alert(result.data.message)
